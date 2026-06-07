@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://convelta.com/sitemap.xml
