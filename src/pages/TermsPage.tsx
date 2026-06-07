@@ -32,10 +32,11 @@ export default function TermsPage() {
                     <section>
                         <h2 className="text-2xl font-bold text-dark-navy mb-4">Acceptable Use</h2>
                         <ul className="list-disc ml-6 space-y-2">
-                            <li>You may use the service for lawful purposes only</li>
-                            <li>You must not upload malicious, illegal, or copyrighted content without authorization</li>
-                            <li>You must not attempt to overload, disrupt, or exploit the service</li>
-                            <li>Automated or bulk usage beyond reasonable limits is prohibited</li>
+                            <li>You may use the service for lawful purposes only.</li>
+                            <li>Users are entirely responsible for the files they upload and process using Convelta.</li>
+                            <li>You must not upload malicious, illegal, copyrighted, harmful, or sensitive personal files.</li>
+                            <li>You must not attempt to overload, disrupt, or exploit the service.</li>
+                            <li>Automated or bulk usage beyond reasonable limits is prohibited.</li>
                         </ul>
                     </section>
 
@@ -59,9 +60,7 @@ export default function TermsPage() {
                     <section>
                         <h2 className="text-2xl font-bold text-dark-navy mb-4">Limitation of Liability</h2>
                         <p>
-                            Convelta is provided &quot;as is&quot; without warranties of any kind. We are not liable for any
-                            data loss, corruption, or damages arising from the use of our service. Always keep backups
-                            of your original files before conversion.
+                            Convelta is provided "as is" without warranties of any kind. Convelta does not guarantee 100% accuracy for every conversion or process. We are not liable for any data loss, corruption, or damages arising from the use of our service. Always keep backups of your original files before conversion.
                         </p>
                     </section>
 

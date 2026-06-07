@@ -41,7 +41,7 @@ export default function ContactPage() {
             <div className="w-full">
                 <h1 className="text-4xl font-bold text-dark-navy mb-8 text-center">Get in Touch</h1>
                 <p className="text-lg text-dark-gray text-center mb-12">
-                    Have feedback or suggestions? We'd love to hear from you!
+                    For support, feedback, or policy questions, contact us! We'd love to hear from you.
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">

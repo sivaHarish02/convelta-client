@@ -3,7 +3,7 @@ export default function AdSlot() {
         <div className="my-8 overflow-hidden rounded-[30px] border border-dark-gray/10 bg-gradient-to-r from-warm-beige/90 via-soft-cream to-white px-5 py-6 shadow-[0_14px_28px_rgba(14,30,37,0.05)] sm:px-7">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                 <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-peach-orange">Sponsored space</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-peach-orange">Advertisement</p>
                     <p className="mt-2 text-sm font-medium text-dark-navy sm:text-base">
                         Premium ad placement reserved for partners and promotions.
                     </p>

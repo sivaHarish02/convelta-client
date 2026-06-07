@@ -15,7 +15,7 @@ export default function PrivacyPage() {
                     <section>
                         <h2 className="text-2xl font-bold text-dark-navy mb-4">Privacy at Convelta</h2>
                         <p>
-                            We take your privacy seriously. This policy explains how we handle your data when using our service.
+                            Convelta is a free online converter toolkit. We take your privacy seriously. This policy explains how we handle your data when using our service.
                         </p>
                     </section>
 
@@ -32,17 +32,20 @@ export default function PrivacyPage() {
                     <section>
                         <h2 className="text-2xl font-bold text-dark-navy mb-4">How We Work</h2>
                         <p>
-                            All conversions happen in your browser. Your files never leave your device and are immediately
-                            deleted after conversion. We only maintain basic analytics to understand usage patterns.
+                            Uploaded files are used only for conversion purposes. All conversions happen in your browser or are processed securely and temporarily on our servers. Your files are immediately deleted after conversion. We only maintain basic analytics to understand usage patterns.
                         </p>
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-dark-navy mb-4">Cookies</h2>
+                        <h2 className="text-2xl font-bold text-dark-navy mb-4">Cookies & Advertisements</h2>
                         <p>
-                            We use minimal cookies only for essential functionality like remembering your preferences.
-                            You can disable cookies in your browser settings if you prefer.
+                            We use minimal cookies for essential functionality like remembering your preferences, as well as for analytics and serving advertisements.
                         </p>
+                        <ul className="list-disc ml-6 mt-4 space-y-2">
+                            <li>Third-party vendors, including Google, use cookies to serve ads based on your prior visits to this website or other websites.</li>
+                            <li>Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to this site and/or other sites on the Internet.</li>
+                            <li>You can manage ad personalization and opt-out of personalized advertising by visiting <a href="https://myadcenter.google.com/" target="_blank" rel="noopener noreferrer" className="text-peach-orange underline">Google Ad Settings</a>.</li>
+                        </ul>
                     </section>
 
                     <section>

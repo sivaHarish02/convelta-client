@@ -15,7 +15,7 @@ export default function AboutPage() {
                     <section>
                         <h2 className="text-2xl font-bold text-dark-navy mb-4">Our Mission</h2>
                         <p>
-                            We believe file conversion should be simple, fast, and free. Our mission is to provide a safe,
+                            We believe file conversion should be fast and simple. Our mission is to provide a safe,
                             reliable platform where anyone can convert their files without hassle, costs, or privacy concerns.
                         </p>
                     </section>
