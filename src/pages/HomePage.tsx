@@ -169,6 +169,11 @@ export default function HomePage() {
                     </div>
                 </div>
             </section>
+
+            {/* Optional bottom Ad Slot */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+                <AdSlot />
+            </div>
         </div>
     )
 }

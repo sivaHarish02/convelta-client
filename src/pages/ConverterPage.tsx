@@ -11,8 +11,7 @@ import AdSlot from '../components/AdSlot'
 import DownloadResultCard from '../components/DownloadResultCard'
 import ErrorAlert from '../components/ErrorAlert'
 import ProgressBar from '../components/ProgressBar'
-
-const SEOContent = React.lazy(() => import('../components/converter/SEOContent'))
+import { ToolDescription, HowToUse, SupportedFormats, FAQ } from '../components/converter/SEOContent'
 const RelatedTools = React.lazy(() => import('../components/converter/RelatedTools'))
 import { getToolBySlug, getRelatedTools, getIconEmoji, categories } from '../data/tools'
 import { convertTool, getApiErrorMessage, type ToolSlug, CONVERTER_ENDPOINTS } from '../services/api'
@@ -921,37 +920,43 @@ export default function ConverterPage() {
                                 <p className="mt-2 text-sm leading-6 text-dark-gray">Validation, upload, processing, preview, and download will update here in real time.</p>
                             </div>
                         )}
-
-                        <AdSlot />
-
-                        <div className="card bg-light-aqua/18 p-6 sm:p-8">
-                            <h3 className="mb-6 text-lg font-bold text-dark-navy">Features</h3>
-                            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-1">
-                                {tool.features.map((feature, idx) => (
-                                    <div key={idx} className="flex items-start gap-3 rounded-2xl bg-white/65 px-4 py-3">
-                                        <span className="text-peach-orange text-xl">✓</span>
-                                        <span className="text-dark-gray">{feature}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
                     </div>
                 </div>
 
-                {/* AdSlot below results */}
-                <div className="mt-10 min-h-[90px]">
-                    <AdSlot />
-                </div>
+                {/* Strict SEO & AdSense Content Blocks */}
+                <div className="mt-12 space-y-10">
+                    <ToolDescription tool={tool} />
+                    <HowToUse tool={tool} supportsFileInput={supportsFileInput} />
+                    <SupportedFormats tool={tool} />
+                    
+                    {/* Features extracted from sidebar */}
+                    <section className="card bg-white/70 p-6 sm:p-8">
+                        <h2 className="text-2xl font-bold text-dark-navy mb-6">Features</h2>
+                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                            {tool.features.map((feature, idx) => (
+                                <div key={idx} className="flex items-start gap-3 rounded-2xl border border-soft-gray/20 bg-white/60 px-4 py-3">
+                                    <span className="text-peach-orange text-xl">✓</span>
+                                    <span className="text-dark-gray">{feature}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
 
-                {/* SEO Content Blocks */}
-                <Suspense fallback={<div className="mt-12 h-64 animate-pulse bg-white/40 rounded-2xl"></div>}>
-                    <SEOContent tool={tool} supportsFileInput={supportsFileInput} />
-                </Suspense>
+                    {/* First AdSlot securely placed inside heavy publisher content */}
+                    <AdSlot isReady={isImplemented} />
+                    
+                    <FAQ tool={tool} />
+                </div>
 
                 {/* Related Converters */}
                 <Suspense fallback={<div className="mt-10 h-64 animate-pulse bg-white/40 rounded-2xl"></div>}>
                     <RelatedTools relatedTools={relatedTools} />
                 </Suspense>
+
+                {/* Optional Second AdSlot at absolute bottom */}
+                <div className="mt-10">
+                    <AdSlot isReady={isImplemented} />
+                </div>
 
                 {/* Recently Used Tools */}
                 {recentTools.length > 0 && (

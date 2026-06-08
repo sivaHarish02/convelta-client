@@ -1,18 +1,52 @@
-export default function AdSlot() {
-    return (
-        <div className="my-8 overflow-hidden rounded-[30px] border border-dark-gray/10 bg-gradient-to-r from-warm-beige/90 via-soft-cream to-white px-5 py-6 shadow-[0_14px_28px_rgba(14,30,37,0.05)] sm:px-7">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-peach-orange">Advertisement</p>
-                    <p className="mt-2 text-sm font-medium text-dark-navy sm:text-base">
-                        Premium ad placement reserved for partners and promotions.
-                    </p>
-                </div>
-                <div className="rounded-2xl border border-dark-gray/10 bg-white/70 px-4 py-3 text-left text-xs text-soft-gray sm:min-w-[220px]">
-                    Responsive placement
-                    <div className="mt-1 text-dark-gray">Optimized for mobile and desktop layouts.</div>
-                </div>
+import { useEffect, useRef } from 'react'
+
+interface AdSlotProps {
+    isReady?: boolean;
+}
+
+export default function AdSlot({ isReady = true }: AdSlotProps) {
+    const isProd = import.meta.env.PROD;
+    const clientId = import.meta.env.VITE_ADSENSE_CLIENT_ID;
+    const adRef = useRef<HTMLModElement>(null);
+
+    useEffect(() => {
+        if (isReady && clientId && adRef.current) {
+            try {
+                // @ts-ignore
+                (window.adsbygoogle = window.adsbygoogle || []).push({});
+            } catch (err) {
+                console.error('AdSense error:', err);
+            }
+        }
+    }, [isReady, clientId]);
+
+    if (!isReady) return null;
+
+    if (isProd && !clientId) {
+        return null;
+    }
+
+    if (!clientId) {
+        // Development placeholder
+        return (
+            <div className="my-8 flex items-center justify-center rounded-[30px] border border-dashed border-dark-gray/20 bg-soft-cream/30 px-5 py-6 sm:px-7">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-soft-gray">Advertisement</p>
             </div>
+        );
+    }
+
+    return (
+        <div className="my-8 min-h-[120px] overflow-hidden rounded-[30px] bg-white shadow-[0_14px_28px_rgba(14,30,37,0.05)]">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-soft-gray text-center pt-2">Advertisement</p>
+            <ins
+                ref={adRef}
+                className="adsbygoogle"
+                style={{ display: 'block' }}
+                data-ad-client={clientId}
+                data-ad-slot="auto"
+                data-ad-format="auto"
+                data-full-width-responsive="true"
+            ></ins>
         </div>
-    )
+    );
 }
