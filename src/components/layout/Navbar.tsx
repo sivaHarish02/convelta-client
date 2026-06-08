@@ -31,7 +31,7 @@ export default function Navbar() {
                         className="group flex items-center gap-3 rounded-full px-1 py-1 text-white transition-transform duration-300 hover:scale-[1.02]"
                     >
                         <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-xl shadow-inner shadow-white/10 transition-colors duration-300 group-hover:bg-white/15">
-                            💫
+                            <img src="/favicon.svg" alt="Convelta Logo" className="h-7 w-7" />
                         </span>
                         <span>
                             <span className="block text-xl font-bold leading-none">Convelta</span>

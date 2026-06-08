@@ -11,7 +11,9 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                     {/* Brand */}
                     <div>
-                        <h3 className="font-bold text-lg mb-2">💫 Convelta</h3>
+                        <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
+                            <img src="/favicon.svg" alt="Convelta Logo" className="h-6 w-6" /> Convelta
+                        </h3>
                         <p className="text-sm text-soft-gray">
                             Convelta makes modern file conversion simple, fast, and dependable.
                         </p>
