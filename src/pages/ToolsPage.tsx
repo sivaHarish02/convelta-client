@@ -18,8 +18,6 @@ export default function ToolsPage() {
                 </p>
             </div>
 
-            <AdSlot />
-
             <div className="space-y-16 mt-8">
                 {categories.map((category) => {
                     const categoryTools = tools.filter(tool => tool.category === category.id)
@@ -49,6 +47,11 @@ export default function ToolsPage() {
                         </section>
                     )
                 })}
+            </div>
+
+            {/* AdSlot placed after all content - content-first policy */}
+            <div className="mt-12">
+                <AdSlot />
             </div>
         </div>
     )

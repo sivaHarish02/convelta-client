@@ -38,7 +38,7 @@ export default function AboutPage() {
                             {[
                                 { title: 'No Signup', desc: 'Start converting immediately' },
                                 { title: 'No Limits', desc: 'Convert as many files as you want' },
-                                { title: 'No Ads', desc: 'Clean, distraction-free experience' },
+                                { title: 'Always Free', desc: 'Core tools are free forever' },
                                 { title: 'Secure', desc: 'Your files are never stored on servers' },
                                 { title: 'Fast', desc: 'Instant conversion on your device' },
                                 { title: 'Free', desc: 'Forever free, no hidden charges' },
