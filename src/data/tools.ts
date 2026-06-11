@@ -11,7 +11,7 @@ export interface Tool {
     id: string;
     name: string;
     slug: string;
-    category: 'data' | 'image' | 'document' | 'business' | 'developer';
+    category: 'data' | 'image' | 'document' | 'business' | 'developer' | 'user-tools';
     description: string;
     inputFormat: string[];
     outputFormat: string;
@@ -650,6 +650,28 @@ export const tools: Tool[] = [
             { question: 'What are salt rounds?', answer: 'Salt rounds determine the computational cost of hashing the password. A higher number is more secure but takes longer to compute. 10 is the standard recommendation.' },
             { question: 'Can I decrypt a bcrypt hash?', answer: 'No. Bcrypt is a one-way hashing algorithm, meaning it cannot be decrypted back into plain text. You can only verify if a given password matches a specific hash.' }
         ]
+    },
+    // User Tools
+    {
+        id: 'qr-code-generator',
+        name: 'QR Code Generator',
+        slug: 'qr-code-generator',
+        category: 'user-tools',
+        description: 'Generate high-quality QR codes for links, text, email, phone numbers, and WiFi networks instantly in your browser.',
+        inputFormat: ['Text content'],
+        outputFormat: 'Image',
+        icon: 'QrCode',
+        features: ['Generate instantly in browser', 'Support URL, Text, Email, Phone, WiFi', 'Custom colors and sizing', 'High error correction', 'Download as PNG or SVG'],
+        inputType: 'text',
+        seoTitle: 'QR Code Generator - Free Online Tool | Convelta',
+        seoDescription: 'Generate custom QR codes for websites, WiFi, emails, and text. Completely free, secure, and runs directly in your browser with PNG and SVG downloads.',
+        faq: [
+            { question: 'What is a QR Code Generator?', answer: 'A QR Code Generator is a tool that allows you to encode data like website URLs, plain text, email addresses, phone numbers, and WiFi network credentials into a scannable 2D barcode.' },
+            { question: 'Is my data secure?', answer: 'Yes! This QR Code Generator runs 100% locally within your browser. Your input data is never sent to our servers or stored anywhere.' },
+            { question: 'What types of QR codes can I create?', answer: 'You can create QR codes for standard Text, Website URLs, pre-filled Emails, Phone numbers, and WiFi networks that automatically connect devices when scanned.' },
+            { question: 'Can I customize the QR code?', answer: 'Yes. You can customize the foreground and background colors, change the error correction level, and adjust the image size and margin.' },
+            { question: 'What formats can I download?', answer: 'You can download your generated QR code as a standard PNG image or as a scalable vector graphic (SVG).' }
+        ]
     }
 ];
 
@@ -688,6 +710,13 @@ export const categories = [
         slug: 'developer',
         description: 'Useful utilities and generators for developers',
         color: 'bg-warm-beige'
+    },
+    {
+        id: 'user-tools',
+        name: 'User Tools',
+        slug: 'user-tools',
+        description: 'Everyday utilities for personal and professional use',
+        color: 'bg-light-aqua'
     }
 ];
 
@@ -748,6 +777,7 @@ export const getIconEmoji = (slug: string): string => {
         'base64-encode-decode': '🔏',
         'json-to-sql': '🗄️',
         'bcrypt-hash-generator-verifier': '🔐',
+        'qr-code-generator': '📱',
     };
     return icons[slug] || '🔄';
 };

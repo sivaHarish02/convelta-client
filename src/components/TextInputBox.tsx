@@ -16,8 +16,8 @@ export default function TextInputBox({
     label = 'Paste your content',
 }: TextInputBoxProps) {
     return (
-        <div className="card bg-white/85">
-            <label htmlFor="text-input-box" className="mb-2 block text-sm font-medium text-dark-navy">
+        <div className="card bg-white/85 p-4">
+            <label htmlFor="text-input-box" className="mb-1.5 block text-xs font-semibold uppercase tracking-[0.15em] text-dark-navy">
                 {label}
             </label>
             <textarea
@@ -26,10 +26,10 @@ export default function TextInputBox({
                 onChange={(e) => onTextChange(e.target.value)}
                 placeholder={placeholder}
                 disabled={isLoading || disabled}
-                className="h-64 w-full resize-none rounded-[24px] border border-soft-gray/70 bg-white px-4 py-4 text-sm leading-7 focus:outline-none focus:ring-2 focus:ring-peach-orange disabled:cursor-not-allowed disabled:bg-white-smoke sm:h-72 sm:text-base"
+                className="h-44 w-full resize-none rounded-xl border border-soft-gray/60 bg-white px-3 py-3 text-sm leading-6 focus:outline-none focus:ring-2 focus:ring-peach-orange disabled:cursor-not-allowed disabled:bg-white-smoke sm:h-52"
                 aria-label={label}
             />
-            <p className="mt-2 text-xs text-soft-gray sm:text-sm">
+            <p className="mt-1 text-[11px] text-soft-gray">
                 {value.length} characters
             </p>
         </div>

@@ -71,12 +71,11 @@ export default function UploadBox({
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
-            className={`group relative overflow-hidden rounded-[30px] border-2 border-dashed p-6 text-center transition-all duration-300 sm:p-8 ${isDragging
-                ? 'border-peach-orange bg-peach-orange/10 shadow-[0_20px_40px_rgba(217,122,69,0.12)]'
-                : 'border-dark-gray/30 bg-white/70 hover:border-peach-orange/60 hover:bg-white'
+            className={`group relative overflow-hidden rounded-2xl border-2 border-dashed px-4 py-5 text-center transition-all duration-200 sm:py-6 ${isDragging
+                ? 'border-peach-orange bg-peach-orange/8'
+                : 'border-dark-gray/25 bg-white/60 hover:border-peach-orange/50 hover:bg-white'
                 } ${isDisabledOrLoading ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
         >
-            <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent opacity-60" />
             <input
                 id="file-upload-input"
                 ref={fileInputRef}
@@ -90,19 +89,15 @@ export default function UploadBox({
                 aria-label="Upload file"
             />
 
-            <div className={`mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-[22px] transition-all duration-300 ${isDragging ? 'bg-peach-orange text-white' : 'bg-soft-cream text-peach-orange group-hover:bg-light-aqua/60'}`}>
-                {isDragging ? <FileUp size={30} aria-hidden="true" /> : <Upload size={30} aria-hidden="true" />}
+            <div className={`mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl transition-all duration-200 ${isDragging ? 'bg-peach-orange text-white' : 'bg-soft-cream text-peach-orange group-hover:bg-light-aqua/60'}`}>
+                {isDragging ? <FileUp size={20} aria-hidden="true" /> : <Upload size={20} aria-hidden="true" />}
             </div>
-            <label htmlFor="file-upload-input" className="mb-2 block text-lg font-bold text-dark-navy sm:text-xl cursor-pointer">
-                {multiple ? 'Drag and drop your files here' : 'Drag and drop your file here'}
+            <label htmlFor="file-upload-input" className="mb-1 block text-sm font-bold text-dark-navy cursor-pointer">
+                {multiple ? 'Drop files here or click to browse' : 'Drop file here or click to browse'}
             </label>
-            <p className="mb-3 text-sm leading-6 text-dark-gray sm:text-base">
-                or click to browse
+            <p className="text-xs text-dark-gray mb-2">
+                Max 10 MB · {acceptedFormats.join(', ')}
             </p>
-            <div className="mx-auto max-w-xl rounded-2xl bg-soft-cream/70 px-4 py-3 text-xs text-soft-gray sm:text-sm">
-                <p className="font-medium text-dark-gray">Max file size: 10 MB</p>
-                Supported formats: {acceptedFormats.join(', ')}
-            </div>
         </div>
     )
 }

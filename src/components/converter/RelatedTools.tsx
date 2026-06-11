@@ -10,16 +10,16 @@ export default React.memo(function RelatedTools({ relatedTools }: RelatedToolsPr
     if (relatedTools.length === 0) return null
 
     return (
-        <div className="mt-10">
-            <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mt-6">
+            <div className="mb-3 flex items-center justify-between">
                 <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-peach-orange">Explore more</p>
-                    <h3 className="text-2xl font-bold text-dark-navy">Related converters</h3>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-peach-orange">Explore more</p>
+                    <h3 className="text-base font-bold text-dark-navy leading-tight">Related converters</h3>
                 </div>
-                <p className="text-sm text-dark-gray">Switch quickly without leaving the workflow.</p>
+                <p className="text-xs text-dark-gray hidden sm:block">Switch quickly without leaving the workflow.</p>
             </div>
 
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                 {relatedTools.map(relatedTool => (
                     <ToolCard
                         key={relatedTool.slug}

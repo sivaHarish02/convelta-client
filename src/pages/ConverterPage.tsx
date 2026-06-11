@@ -13,6 +13,7 @@ import ErrorAlert from '../components/ErrorAlert'
 import ProgressBar from '../components/ProgressBar'
 import { ToolDescription, HowToUse, SupportedFormats, FAQ } from '../components/converter/SEOContent'
 import BcryptToolUI from '../components/converter/BcryptToolUI'
+import QRCodeToolUI from '../components/converter/QRCodeToolUI'
 const RelatedTools = React.lazy(() => import('../components/converter/RelatedTools'))
 import { getToolBySlug, getRelatedTools, getIconEmoji, categories } from '../data/tools'
 import { convertTool, getApiErrorMessage, type ToolSlug, CONVERTER_ENDPOINTS } from '../services/api'
@@ -472,7 +473,7 @@ export default function ConverterPage() {
     const seoDescription = tool.seoDescription || `${tool.description}. Use Convelta to convert ${tool.inputFormat.join(', ')} to ${tool.outputFormat} online for free. No signup required.`
 
     return (
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
             <SEO
                 title={seoTitle}
                 description={seoDescription}
@@ -496,66 +497,68 @@ export default function ConverterPage() {
 
             <Link
                 to="/tools"
-                className="mb-8 inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-2 text-sm font-medium text-peach-orange shadow-[0_10px_20px_rgba(14,30,37,0.05)] hover:-translate-y-0.5 hover:text-dark-teal"
+                className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-white/70 px-3 py-1.5 text-xs font-medium text-peach-orange shadow-[0_4px_12px_rgba(14,30,37,0.05)] hover:-translate-y-0.5 hover:text-dark-teal"
                 aria-label="Back to all tools"
             >
-                <ArrowLeft size={18} aria-hidden="true" /> Back to all tools
+                <ArrowLeft size={14} aria-hidden="true" /> Back to all tools
             </Link>
 
             <div className="w-full">
-                <div className="surface-panel mb-8 overflow-hidden p-6 sm:p-8">
-                    <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-                        <div className="flex items-start gap-4 sm:gap-5">
-                            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-[24px] bg-light-aqua/45 text-4xl shadow-inner shadow-white/70 sm:h-20 sm:w-20 sm:text-5xl">{getIconEmoji(tool.slug)}</div>
+                <div className="surface-panel mb-5 overflow-hidden p-4 sm:p-5">
+                    <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                        <div className="flex items-center gap-3">
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-light-aqua/45 text-2xl shadow-inner shadow-white/70">{getIconEmoji(tool.slug)}</div>
                             <div>
-                                <p className="text-xs font-semibold uppercase tracking-[0.26em] text-peach-orange">Convelta converter</p>
-                                <h1 className="mt-2 text-3xl font-bold tracking-tight text-dark-navy sm:text-4xl lg:text-5xl">{tool.name}</h1>
-                                <p className="mt-3 max-w-2xl text-sm leading-7 text-dark-gray sm:text-lg">{tool.description}</p>
+                                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-peach-orange">Convelta converter</p>
+                                <h1 className="text-xl font-bold tracking-tight text-dark-navy sm:text-2xl">{tool.name}</h1>
+                                <p className="mt-0.5 text-xs leading-5 text-dark-gray max-w-xl">{tool.description}</p>
                             </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:min-w-[280px]">
-                            <div className="rounded-2xl bg-white/70 px-4 py-3 text-sm text-dark-gray">
-                                <div className="text-xs uppercase tracking-[0.18em] text-soft-gray">Input</div>
-                                <div className="mt-1 font-medium text-dark-navy">{tool.inputFormat.join(', ')}</div>
+                        <div className="grid grid-cols-3 gap-2 lg:min-w-[220px]">
+                            <div className="rounded-xl bg-white/70 px-3 py-2 text-sm text-dark-gray">
+                                <div className="text-[10px] uppercase tracking-[0.16em] text-soft-gray">Input</div>
+                                <div className="mt-0.5 text-xs font-medium text-dark-navy truncate">{tool.inputFormat.join(', ')}</div>
                             </div>
-                            <div className="rounded-2xl bg-white/70 px-4 py-3 text-sm text-dark-gray">
-                                <div className="text-xs uppercase tracking-[0.18em] text-soft-gray">Output</div>
-                                <div className="mt-1 font-medium text-dark-navy">{tool.outputFormat}</div>
+                            <div className="rounded-xl bg-white/70 px-3 py-2 text-sm text-dark-gray">
+                                <div className="text-[10px] uppercase tracking-[0.16em] text-soft-gray">Output</div>
+                                <div className="mt-0.5 text-xs font-medium text-dark-navy">{tool.outputFormat}</div>
                             </div>
-                            <div className="col-span-2 rounded-2xl bg-white/70 px-4 py-3 text-sm text-dark-gray sm:col-span-1">
-                                <div className="text-xs uppercase tracking-[0.18em] text-soft-gray">Mode</div>
-                                <div className="mt-1 font-medium text-dark-navy">{supportsFileInput && supportsTextInput ? 'Upload or paste' : supportsFileInput ? 'Upload file' : 'Text input'}</div>
+                            <div className="rounded-xl bg-white/70 px-3 py-2 text-sm text-dark-gray">
+                                <div className="text-[10px] uppercase tracking-[0.16em] text-soft-gray">Mode</div>
+                                <div className="mt-0.5 text-xs font-medium text-dark-navy">{supportsFileInput && supportsTextInput ? 'Upload or paste' : supportsFileInput ? 'Upload' : 'Text'}</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className={`grid gap-8 ${tool.slug === 'bcrypt-hash-generator-verifier' ? 'xl:grid-cols-1 max-w-4xl mx-auto' : 'xl:grid-cols-[minmax(0,1.55fr)_minmax(320px,0.95fr)]'}`}>
+                <div className={`grid gap-8 ${['bcrypt-hash-generator-verifier', 'qr-code-generator'].includes(tool.slug) ? 'xl:grid-cols-1 max-w-4xl mx-auto' : 'xl:grid-cols-[minmax(0,1.55fr)_minmax(320px,0.95fr)]'}`}>
                     <div className="space-y-8">
                         {tool.slug === 'bcrypt-hash-generator-verifier' ? (
                             <BcryptToolUI />
+                        ) : tool.slug === 'qr-code-generator' ? (
+                            <QRCodeToolUI />
                         ) : (
                             <>
-                                <div className="card p-6 sm:p-8">
+                                <div className="card p-5 sm:p-6">
                             {!isImplemented && (
-                                <div className="mb-6 rounded-[24px] border border-peach-orange/30 bg-peach-orange/8 p-4 sm:p-5 flex items-start gap-4">
-                                    <span className="text-peach-orange text-3xl shrink-0">⏳</span>
+                                <div className="mb-4 rounded-2xl border border-peach-orange/30 bg-peach-orange/8 p-3 sm:p-4 flex items-start gap-3">
+                                    <span className="text-peach-orange text-xl shrink-0">⏳</span>
                                     <div>
-                                        <h4 className="font-bold text-dark-navy">Coming Soon</h4>
-                                        <p className="text-sm text-dark-gray mt-1">This tool is coming soon. Backend integration is pending.</p>
+                                        <h4 className="font-bold text-dark-navy text-sm">Coming Soon</h4>
+                                        <p className="text-xs text-dark-gray mt-0.5">Backend integration is pending.</p>
                                     </div>
                                 </div>
                             )}
 
-                            <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                            <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                                 <div>
-                                    <h2 className="text-xl font-bold text-dark-navy sm:text-2xl">Step 1: Upload or enter content</h2>
-                                    <p className="text-sm leading-6 text-dark-gray">Use one input mode at a time. Selecting a file clears pasted text, and typing text clears the selected file.</p>
+                                    <h2 className="text-base font-bold text-dark-navy">Step 1: Upload or enter content</h2>
+                                    <p className="text-xs leading-5 text-dark-gray">Use one input mode at a time.</p>
                                 </div>
                                 <button
                                     type="button"
                                     onClick={resetState}
-                                    className="btn-secondary self-start px-4 py-2 text-sm"
+                                    className="btn-secondary self-start px-3 py-1.5 text-xs"
                                 >
                                     Reset
                                 </button>
@@ -642,11 +645,11 @@ export default function ConverterPage() {
                             )}
 
                             {tool.options && tool.options.length > 0 && (
-                                <div className="mt-8 border-t border-soft-gray/30 pt-6">
-                                    <h3 className="text-lg font-bold text-dark-navy mb-4 flex items-center gap-2">
+                                <div className="mt-5 border-t border-soft-gray/30 pt-4">
+                                    <h3 className="text-sm font-bold text-dark-navy mb-3 flex items-center gap-2">
                                         ⚙️ Settings & Options
                                     </h3>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-soft-cream/40 p-5 rounded-[24px] border border-soft-gray/20">
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 bg-soft-cream/40 p-3.5 rounded-2xl border border-soft-gray/20">
                                         {tool.options.map((option) => {
                                             if ((tool.slug === 'svg-converter' || tool.slug === 'any-image-converter') && option.id === 'quality' && optionsState['outputFormat'] === 'png') {
                                                 return null;
@@ -736,7 +739,7 @@ export default function ConverterPage() {
                                 </div>
                             )}
 
-                            <div className="mt-6">
+                            <div className="mt-4">
                                 <button
                                     type="button"
                                     onClick={handleConvert}
@@ -907,53 +910,53 @@ export default function ConverterPage() {
                         )}
 
                         {!showPreview && !showDownloadCard && !errorMessage && progress === 0 && (
-                            <div className="card border border-dark-gray/10 bg-white/60 p-6 sm:p-8">
-                                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-peach-orange">Ready when you are</p>
-                                <h3 className="mt-2 text-xl font-bold text-dark-navy">No output yet</h3>
-                                <p className="mt-2 text-sm leading-6 text-dark-gray">Choose a file or paste text, then run the conversion. Preview and download options will appear here after a successful response.</p>
+                            <div className="card border border-dark-gray/10 bg-white/60 p-4">
+                                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-peach-orange">Ready when you are</p>
+                                <h3 className="mt-1 text-sm font-bold text-dark-navy">No output yet</h3>
+                                <p className="mt-1 text-xs leading-5 text-dark-gray">Choose a file or paste text, then run the conversion.</p>
                             </div>
                         )}
                             </>
                         )}
                     </div>
 
-                    {tool.slug !== 'bcrypt-hash-generator-verifier' && (
-                        <div className="space-y-8">
+                    {!['bcrypt-hash-generator-verifier', 'qr-code-generator'].includes(tool.slug) && (
+                        <div className="space-y-5">
                             {(progress > 0 || isLoading) ? (
                                 <ProgressBar progress={progress} />
                             ) : (
-                                <div className="card bg-white/70">
-                                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-peach-orange">Status</p>
-                                    <h3 className="mt-2 text-lg font-bold text-dark-navy">Waiting to start</h3>
-                                    <p className="mt-2 text-sm leading-6 text-dark-gray">Validation, upload, processing, preview, and download will update here in real time.</p>
+                                <div className="card bg-white/70 p-4">
+                                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-peach-orange">Status</p>
+                                    <h3 className="mt-1 text-sm font-bold text-dark-navy">Waiting to start</h3>
+                                    <p className="mt-1 text-xs leading-5 text-dark-gray">Validation, upload, processing, preview, and download will update here in real time.</p>
                                 </div>
                             )}
                         </div>
                     )}
                 </div>
 
-                {/* Strict SEO & AdSense Content Blocks */}
-                <div className="mt-12 space-y-10">
+                {/* Compact SEO & Content Blocks */}
+                <div className="mt-8 space-y-4">
                     <ToolDescription tool={tool} />
                     <HowToUse tool={tool} supportsFileInput={supportsFileInput} />
                     <SupportedFormats tool={tool} />
                     
-                    {/* Features extracted from sidebar */}
-                    <section className="card bg-white/70 p-6 sm:p-8">
-                        <h2 className="text-2xl font-bold text-dark-navy mb-6">Features</h2>
-                        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    {/* Features */}
+                    <section className="card bg-white/70 p-5">
+                        <h2 className="text-lg font-bold text-dark-navy mb-3">Features</h2>
+                        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                             {tool.features.map((feature, idx) => (
-                                <div key={idx} className="flex items-start gap-3 rounded-2xl border border-soft-gray/20 bg-white/60 px-4 py-3">
-                                    <span className="text-peach-orange text-xl">✓</span>
-                                    <span className="text-dark-gray">{feature}</span>
+                                <div key={idx} className="flex items-center gap-2.5 rounded-xl border border-soft-gray/20 bg-white/60 px-3 py-2">
+                                    <span className="text-peach-orange text-base">✓</span>
+                                    <span className="text-xs text-dark-gray">{feature}</span>
                                 </div>
                             ))}
                         </div>
                     </section>
 
-                    {/* First AdSlot securely placed inside heavy publisher content */}
+                    {/* AdSlot after content */}
                     <AdSlot isReady={isImplemented} />
-                    
+
                     <FAQ tool={tool} />
                 </div>
 

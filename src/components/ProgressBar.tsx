@@ -15,25 +15,25 @@ const getProgressLabel = (progress: number): string => {
 
 export default function ProgressBar({ progress }: ProgressBarProps) {
     return (
-        <div className="card overflow-hidden bg-white/90">
-            <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="card overflow-hidden bg-white/90 p-4">
+            <div className="mb-3 flex items-center justify-between">
                 <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-peach-orange">Conversion status</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-peach-orange">Status</p>
                     <span className="text-sm font-medium text-dark-navy">{getProgressLabel(progress)}</span>
                 </div>
-                <span className="self-start rounded-full bg-dark-navy/5 px-3 py-1 text-sm font-semibold text-peach-orange sm:self-auto">{progress}%</span>
+                <span className="rounded-full bg-dark-navy/5 px-2.5 py-1 text-sm font-bold text-peach-orange">{progress}%</span>
             </div>
-            <div className="h-3 overflow-hidden rounded-full bg-warm-beige/80">
+            <div className="h-2 overflow-hidden rounded-full bg-warm-beige/80">
                 <div
                     className="relative h-full rounded-full bg-gradient-to-r from-peach-orange via-sky-cyan to-light-aqua transition-all duration-700 ease-out"
                     style={{ width: `${progress}%` }}
                 >
-                    <span className="absolute inset-0 animate-pulse bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.6),transparent)]" />
+                    <span className="absolute inset-0 animate-pulse bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.5),transparent)]" />
                 </div>
             </div>
-            <div className="mt-4 grid grid-cols-2 gap-2 text-xs text-soft-gray sm:grid-cols-4">
+            <div className="mt-3 grid grid-cols-4 gap-1.5 text-[10px] text-soft-gray">
                 {[10, 40, 60, 100].map((step) => (
-                    <div key={step} className={`rounded-2xl px-3 py-2 ${progress >= step ? 'bg-light-aqua/35 text-dark-navy' : 'bg-soft-cream/70'}`}>
+                    <div key={step} className={`rounded-lg px-2 py-1 text-center ${progress >= step ? 'bg-light-aqua/35 text-dark-navy font-medium' : 'bg-soft-cream/70'}`}>
                         {step}%
                     </div>
                 ))}

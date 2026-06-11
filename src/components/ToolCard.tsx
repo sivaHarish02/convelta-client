@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { ArrowUpRight } from 'lucide-react'
 
 interface ToolCardProps {
     slug: string
@@ -9,36 +10,28 @@ interface ToolCardProps {
     features: string[]
 }
 
-export default React.memo(function ToolCard({ slug, name, description, icon, features }: ToolCardProps) {
+export default React.memo(function ToolCard({ slug, name, description, icon }: ToolCardProps) {
     return (
-        <div className="h-full transition-transform duration-300 hover:-translate-y-2">
-            <Link to={`/tools/${slug}`} className="block h-full">
-                <div className="card group relative flex h-full cursor-pointer flex-col overflow-hidden p-0">
-                    <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-peach-orange via-sky-cyan to-light-aqua opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                    <div className="flex h-full flex-col p-6">
-                        <div className="mb-5 flex items-start justify-between gap-4">
-                            <div className="flex h-16 w-16 items-center justify-center rounded-[22px] bg-soft-cream text-4xl shadow-inner shadow-white/80 transition-all duration-300 group-hover:scale-110 group-hover:rotate-[-4deg] group-hover:bg-light-aqua/55">
-                                {icon}
-                            </div>
-                            <span className="rounded-full bg-dark-navy/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-dark-gray">
-                                Convert
-                            </span>
-                        </div>
-                        <h3 className="mb-2 text-lg font-bold text-dark-navy">{name}</h3>
-                        <p className="mb-5 line-clamp-3 text-sm leading-6 text-dark-gray">{description}</p>
-                        <div className="mt-auto flex flex-wrap gap-2">
-                            {features.slice(0, 2).map((feature, idx) => (
-                                <span
-                                    key={idx}
-                                    className="rounded-full bg-light-aqua/70 px-3 py-1 text-xs font-medium text-dark-navy"
-                                >
-                                    {feature}
-                                </span>
-                            ))}
-                        </div>
+        <Link to={`/tools/${slug}`} className="block group">
+            <div className="relative flex flex-col overflow-hidden rounded-2xl border border-white/60 bg-white/75 p-3.5 shadow-[0_2px_10px_rgba(14,30,37,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_18px_rgba(14,30,37,0.10)] hover:border-light-aqua/60 cursor-pointer h-full">
+                {/* Accent top bar on hover */}
+                <div className="absolute inset-x-0 top-0 h-0.5 rounded-t-2xl bg-gradient-to-r from-peach-orange to-light-aqua opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
+
+                <div className="flex items-start justify-between gap-2 mb-2.5">
+                    {/* Icon */}
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-soft-cream text-lg transition-colors duration-200 group-hover:bg-light-aqua/50">
+                        {icon}
                     </div>
+                    {/* Arrow cue */}
+                    <ArrowUpRight
+                        size={14}
+                        className="text-soft-gray opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:text-peach-orange shrink-0 mt-0.5"
+                    />
                 </div>
-            </Link>
-        </div>
+
+                <h3 className="text-sm font-bold text-dark-navy leading-snug mb-1">{name}</h3>
+                <p className="text-xs leading-4 text-dark-gray line-clamp-2">{description}</p>
+            </div>
+        </Link>
     )
 })
