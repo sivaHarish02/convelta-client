@@ -629,6 +629,27 @@ export const tools: Tool[] = [
                 ]
             }
         ]
+    },
+    {
+        id: 'bcrypt-hash-generator-verifier',
+        name: 'Bcrypt Hash Generator & Verifier',
+        slug: 'bcrypt-hash-generator-verifier',
+        category: 'developer',
+        description: 'Generate bcrypt password hashes and verify plain text passwords against bcrypt hashes securely in your browser.',
+        inputFormat: ['Text content'],
+        outputFormat: 'Text',
+        icon: 'Lock',
+        features: ['Generate hashes securely', 'Verify passwords against hashes', 'Adjustable salt rounds', 'Local browser execution', 'No backend data transfer'],
+        inputType: 'text',
+        seoTitle: 'Bcrypt Hash Generator & Verifier - Free Online Developer Tool | Convelta',
+        seoDescription: 'Generate secure bcrypt hashes or verify passwords against existing bcrypt hashes. 100% free, safe, and runs entirely in your local browser.',
+        faq: [
+            { question: 'What is Bcrypt?', answer: 'Bcrypt is a secure password hashing function based on the Blowfish cipher. It incorporates a salt to protect against rainbow table attacks and is adaptive over time by increasing the iteration count (salt rounds).' },
+            { question: 'How do I generate a hash?', answer: 'Enter your plain text password, select the number of salt rounds (default is 10), and click Generate. The tool will output the secure bcrypt hash.' },
+            { question: 'Is this tool safe to use?', answer: 'Yes. This tool runs 100% locally in your browser. Your passwords and hashes are never sent to our servers. However, as a best practice, never enter your real production passwords on shared or public devices.' },
+            { question: 'What are salt rounds?', answer: 'Salt rounds determine the computational cost of hashing the password. A higher number is more secure but takes longer to compute. 10 is the standard recommendation.' },
+            { question: 'Can I decrypt a bcrypt hash?', answer: 'No. Bcrypt is a one-way hashing algorithm, meaning it cannot be decrypted back into plain text. You can only verify if a given password matches a specific hash.' }
+        ]
     }
 ];
 
@@ -726,6 +747,7 @@ export const getIconEmoji = (slug: string): string => {
         'json-to-dart-model': '🎯',
         'base64-encode-decode': '🔏',
         'json-to-sql': '🗄️',
+        'bcrypt-hash-generator-verifier': '🔐',
     };
     return icons[slug] || '🔄';
 };

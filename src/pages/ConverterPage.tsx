@@ -12,6 +12,7 @@ import DownloadResultCard from '../components/DownloadResultCard'
 import ErrorAlert from '../components/ErrorAlert'
 import ProgressBar from '../components/ProgressBar'
 import { ToolDescription, HowToUse, SupportedFormats, FAQ } from '../components/converter/SEOContent'
+import BcryptToolUI from '../components/converter/BcryptToolUI'
 const RelatedTools = React.lazy(() => import('../components/converter/RelatedTools'))
 import { getToolBySlug, getRelatedTools, getIconEmoji, categories } from '../data/tools'
 import { convertTool, getApiErrorMessage, type ToolSlug, CONVERTER_ENDPOINTS } from '../services/api'
@@ -529,9 +530,13 @@ export default function ConverterPage() {
                     </div>
                 </div>
 
-                <div className="grid gap-8 xl:grid-cols-[minmax(0,1.55fr)_minmax(320px,0.95fr)]">
+                <div className={`grid gap-8 ${tool.slug === 'bcrypt-hash-generator-verifier' ? 'xl:grid-cols-1 max-w-4xl mx-auto' : 'xl:grid-cols-[minmax(0,1.55fr)_minmax(320px,0.95fr)]'}`}>
                     <div className="space-y-8">
-                        <div className="card p-6 sm:p-8">
+                        {tool.slug === 'bcrypt-hash-generator-verifier' ? (
+                            <BcryptToolUI />
+                        ) : (
+                            <>
+                                <div className="card p-6 sm:p-8">
                             {!isImplemented && (
                                 <div className="mb-6 rounded-[24px] border border-peach-orange/30 bg-peach-orange/8 p-4 sm:p-5 flex items-start gap-4">
                                     <span className="text-peach-orange text-3xl shrink-0">⏳</span>
@@ -908,19 +913,23 @@ export default function ConverterPage() {
                                 <p className="mt-2 text-sm leading-6 text-dark-gray">Choose a file or paste text, then run the conversion. Preview and download options will appear here after a successful response.</p>
                             </div>
                         )}
-                    </div>
-
-                    <div className="space-y-8">
-                        {(progress > 0 || isLoading) ? (
-                            <ProgressBar progress={progress} />
-                        ) : (
-                            <div className="card bg-white/70">
-                                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-peach-orange">Status</p>
-                                <h3 className="mt-2 text-lg font-bold text-dark-navy">Waiting to start</h3>
-                                <p className="mt-2 text-sm leading-6 text-dark-gray">Validation, upload, processing, preview, and download will update here in real time.</p>
-                            </div>
+                            </>
                         )}
                     </div>
+
+                    {tool.slug !== 'bcrypt-hash-generator-verifier' && (
+                        <div className="space-y-8">
+                            {(progress > 0 || isLoading) ? (
+                                <ProgressBar progress={progress} />
+                            ) : (
+                                <div className="card bg-white/70">
+                                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-peach-orange">Status</p>
+                                    <h3 className="mt-2 text-lg font-bold text-dark-navy">Waiting to start</h3>
+                                    <p className="mt-2 text-sm leading-6 text-dark-gray">Validation, upload, processing, preview, and download will update here in real time.</p>
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
 
                 {/* Strict SEO & AdSense Content Blocks */}
