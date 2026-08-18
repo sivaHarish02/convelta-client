@@ -13,9 +13,9 @@ export default function CategoryPage() {
 
     if (!category) {
         return (
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-                <h1 className="text-2xl font-bold text-dark-navy mb-4">Category not found</h1>
-                <Link to="/tools" className="btn-primary">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-center">
+                <h1 className="text-xl font-bold text-dark-navy mb-3">Category not found</h1>
+                <Link to="/tools" className="btn-primary text-sm">
                     Back to all tools
                 </Link>
             </div>
@@ -23,8 +23,8 @@ export default function CategoryPage() {
     }
 
     return (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <SEO 
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <SEO
                 title={`${category.name} - Free Online Toolkit | Convelta`}
                 description={`${category.description}. Use Convelta's free ${category.name.toLowerCase()} to convert files online instantly.`}
                 canonicalUrl={`/category/${category.slug}`}
@@ -32,15 +32,15 @@ export default function CategoryPage() {
 
             <Link
                 to="/tools"
-                className="flex items-center gap-2 text-peach-orange hover:text-dark-teal transition-colors mb-8"
+                className="inline-flex items-center gap-1.5 text-sm text-peach-orange hover:text-dark-teal transition-colors mb-5"
             >
-                <ArrowLeft size={18} /> Back to all tools
+                <ArrowLeft size={15} /> Back to all tools
             </Link>
 
-            <h1 className="text-4xl font-bold text-dark-navy mb-2">{category.name}</h1>
-            <p className="text-lg text-dark-gray mb-12">{category.description}</p>
+            <h1 className="text-2xl font-bold text-dark-navy mb-1">{category.name}</h1>
+            <p className="text-sm text-dark-gray mb-6">{category.description}</p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
                 {categoryTools.map((tool) => (
                     <ToolCard
                         key={tool.id}
@@ -53,7 +53,9 @@ export default function CategoryPage() {
                 ))}
             </div>
 
-            <AdSlot />
+            <div className="mt-8">
+                <AdSlot />
+            </div>
         </div>
     )
 }
